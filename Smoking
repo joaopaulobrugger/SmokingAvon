@@ -1,0 +1,655 @@
+package tests;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.Driver;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.imageio.ImageIO;
+
+//import org.apache.xmlbeans.impl.common.PrefixResolver;
+import org.jetbrains.annotations.NotNull;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
+
+public class Smoking_RA {
+
+
+    public static void main(String[] args) throws InterruptedException {
+
+
+        System.setProperty("webdriver.gecko.driver", "C:\\\\gecko\\geckodriver.exe");
+
+        WebDriver driver = new FirefoxDriver();
+
+        driver.get("https://www.avoncomigo.avon.com.br/widget/avonwg2/#/login");
+        // driver.manage().window().setSize(new Dimension(1382, 744));
+        driver.findElement(By.xpath("//input[@name='userName']")).sendKeys("00000532");
+        driver.findElement(By.xpath("//input[@id='pwd']")).sendKeys("Digital19");
+        driver.findElement(By.xpath("//button[@id='loginBtn']")).click();
+        Thread.sleep(10 * 1000);
+        //driver.get("https://www.avoncomigo.avon.com.br/webapp/wcs/stores/servlet/pt/avoncpg04/avonhomepagerep");
+
+        //Mudar a campanha. cada campanha nova copiar xpath
+        //driver.findElement(By.id("btn-campaign")).click();
+        // Thread.sleep(15 * 1000);
+        //driver.findElement(By.xpath("//html/body/div[3]/div[3]/div[1]/div[2]/div[1]/div/div[1]/section/div/div[2]/div/div[1]/div/div/a[1]/figure/img")).click();
+        // Thread.sleep(5 * 1000);
+
+/*
+        System.out.println("************************************ VALIDAÇÕESES-HOME ***********************************************");
+        if (driver.getPageSource().contains("AVON")) {
+            System.out.println("HOME_OK");
+        } else {
+            System.err.println("HOME_ERROR");
+        }
+
+        if (driver.getPageSource().contains("minishopcart_total")) {
+            System.out.println("CARRINHO_OK");
+        } else {
+            System.err.println("CARRINHO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("avonOrderTotal")) {
+            System.out.println("TOTAL_PEDIDO_OK");
+        } else {
+            System.err.println("TOTAL_PEDIDO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("avonOrderProfit")) {
+            System.out.println("LUCRE_LIMITE_OK");
+        } else {
+            System.err.println("LUCRE_LIMITE_ERROR");
+        }
+
+        if (driver.getPageSource().contains("avonCreditLimit")) {
+            System.out.println("LIMITE_OK");
+        } else {
+            System.err.println("LIMITE_ERROR");
+        }
+
+        if (driver.getPageSource().contains("logout_button avon-icon-btn-sair")) {
+            System.out.println("LOGOUT_OK");
+        } else {
+            System.err.println("LOGOUT_ERROR");
+        }
+
+        if (driver.getPageSource().contains("helloName")) {
+            System.out.println("MEU_PERFIL_OK");
+        } else {
+            System.err.println("MEU_PERFIL_ERROR");
+        }
+
+        if (driver.getPageSource().contains("btn-campaign")) {
+            System.out.println("TROCAR_CAMPANHA_OK");
+        } else {
+            System.err.println("TROCAR_CAMPANHA_ERROR");
+        }
+
+        if (driver.getPageSource().contains("SimpleSearchForm_SearchTerm")) {
+            System.out.println("CAMPO_PESQUISA_OK");
+        } else {
+            System.err.println("CAMPO_PESQUISA_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Procurar")) {
+            System.out.println("BOTÃO_PROCURAR_OK");
+        } else {
+            System.err.println("BOTÃO_PROCURAR_ERROR");
+        }
+
+        if (driver.getPageSource().contains("menu-item active")) {
+            System.out.println("OFERTAS_OK");
+        } else {
+            System.err.println("OFERTAS_ERROR");
+        }
+
+
+        if (driver.getPageSource().contains("Criar Pedido")) {
+            System.out.println("CRIAR_PEDIDO_OK");
+        } else {
+            System.err.println("CRIAR_PEDIDO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Meus Pedidos")) {
+            System.out.println("MEUS_PEDIDOS_OK");
+        } else {
+            System.err.println("MEUS_PEDIDOS_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Lucre Mais")) {
+            System.out.println("LUCRE_MAIS_OK");
+        } else {
+            System.err.println("LUCRE_MAIS_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Treinamentos")) {
+            System.out.println("TREINAMENTOS_OK");
+        } else {
+            System.err.println("TREINAMENTOS_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Meus Incentivos")) {
+            System.out.println("INCENTIVOS_OK");
+        } else {
+            System.err.println("INCENTIVOS_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Oferta do dia")) {
+            System.out.println("MAIS_PRODUTOS_OK");
+        } else {
+            System.err.println("MAIS_PRODUTOS_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Ofertas e Outlet")) {
+            System.out.println("OFERTAS_E_OUTLET_OK");
+        } else {
+            System.err.println("OFERTAS_E_OUTLET_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Presentes")) {
+            System.out.println("PRESENTES_OK");
+        } else {
+            System.err.println("PRESENTES_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Maquiagem")) {
+            System.out.println("MAQUIAGEM_OK");
+        } else {
+            System.err.println("MAQUIAGEM_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Perfumaria")) {
+            System.out.println("PERFUMARIA_OK");
+        } else {
+            System.err.println("PERFUMARIA_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Renew")) {
+            System.out.println("RENEW_OK");
+        } else {
+            System.err.println("RENEW_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Cuidados Diários")) {
+            System.out.println("CUIDADOS_DIÁRIOS_OK");
+        } else {
+            System.err.println("CUIDADOS_DIÁRIOS_ERROR");
+        }
+
+        if (driver.getPageSource().contains("pla")) {
+            System.out.println("MODA_E_CASA_OK");
+        } else {
+            System.err.println("MODA_E_CASA_ERROR");
+        }
+
+        if (driver.getPageSource().contains("owl-item active")) {
+            System.out.println("BANNERS_OK");
+        } else {
+            System.err.println("BANNERS_ERROR");
+        }
+
+        if (driver.getPageSource().contains("owl-prev")) {
+            System.out.println("BANNER_VOLTAR_OK");
+        } else {
+            System.err.println("BANNER_VOLTAR_ERROR");
+        }
+
+        if (driver.getPageSource().contains("owl-next")) {
+            System.out.println("BANNER_PRÓXIMO_OK");
+        } else {
+            System.err.println("BANNER_PRÓXIMO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Meu Painel")) {
+            System.out.println("MEU_PAINEL_OK");
+        } else {
+            System.err.println("MEU_PAINEL_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Meu Mundo Avon")) {
+            System.out.println("MUNDO_AVON_OK");
+        } else {
+            System.err.println("MUNDO_AVON_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Turbo")) {
+            System.out.println("TURBO_OK");
+        } else {
+            System.err.println("TURBO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Meus Links Rápidos")) {
+            System.out.println("LINKS_RÁPIDOS_OK");
+        } else {
+            System.err.println("LINKS_RÁPIDOS_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Folheto Digital")) {
+            System.out.println("FOLHETO_DIGITAL_OK");
+        } else {
+            System.err.println("FOLHETO_DIGITAL_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Outlet")) {
+            System.out.println("OUTLET_OK");
+        } else {
+            System.err.println("OUTLET_ERROR-");
+        }
+
+        if (driver.getPageSource().contains("Incentivos")) {
+            System.out.println("INCENTIVOS_OK");
+        } else {
+            System.err.println("INCENTIVOS_ERROR");
+        }
+
+        if (driver.getPageSource().contains("calendarioQuick")) {
+            System.out.println("CALENDÁRIO_OK");
+        } else {
+            System.err.println("CALENDÁRIO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Lançamentos da Campanha")) {
+            System.out.println("LANÇAMENTOS_DA_CAMPANHA_OK");
+        } else {
+            System.err.println("LANÇAMENTOS_DA_CAMPANHA_ERROR");
+        }
+
+        if (driver.getPageSource().contains("bannersNovidades")) {
+            System.out.println("BANNER_NOVIDADES_OK");
+        } else {
+            System.err.println("BANNER_NOVIDADES_ERROR");
+        }
+
+        if (driver.getPageSource().contains("itensProdutos so-na-internet")) {
+            System.out.println("SÓ_NA_INTERNET_OK");
+        } else {
+            System.err.println("SÓ_NA_INTERNET_ERROR");
+        }
+
+        if (driver.getPageSource().contains("PaginaHomeVideos")) {
+            System.out.println("VIDEOS_OK");
+        } else {
+            System.err.println("-VIDEOS_ERROR");
+        }
+        System.out.println("**************************************************************************************************");
+
+        //retira o menu na hora da evidência
+        {
+            Thread.sleep(15 * 1000);
+
+            String js;
+
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+            js = "return document.getElementById('header').style.visibility = 'hidden'";
+            jse.executeScript(js);
+        }
+        //Tira print da tela com scroll
+        Screenshot TirarPrint = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver);
+
+        try {
+
+            ImageIO.write(TirarPrint.getImage(), "PNG", new File("C://tmp//Home__" + timestamp() + ".png"));
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        {
+            driver.navigate().refresh();
+        }*/
+
+        //retorna a tela  inicial mas sempre terá que colocar o link conforme a campanha
+        //driver.get("https://www.avoncomigo.avon.com.br/webapp/wcs/stores/servlet/pt/avoncpg07/avonhomepagerep");
+        Thread.sleep(5 * 1000);
+        // Mudar a campanha. cada campanha nova copiar xpath
+        //driver.findElement(By.id("btn-campaign")).click();
+        //Thread.sleep(15 * 1000);
+        // driver.findElement(By.xpath("//*[@id=\"dijit_layout_ContentPane_0\"]/div/div/a[1]/figure/img")).click();
+
+        //realiza uma pesquisa simples no nova
+        driver.findElement(By.id("SimpleSearchForm_SearchTerm")).sendKeys("510748");
+        Thread.sleep(15 * 1000);
+        driver.findElement(By.xpath("//*[@id=\"searchBox\"]/a")).click();
+        Thread.sleep(15 * 1000);
+        driver.findElement(By.xpath("//*[@id=\"productPageAdd2Cart\"]")).click();
+        Thread.sleep(15 * 1000);
+        driver.findElement(By.xpath("//html/body/div[7]/div[2]/div[1]/div[1]/div/div[1]/div/div/div/a")).click();
+        Thread.sleep(10 * 1000);
+
+       //menu lojas de ofertas
+        driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[1]/div/div/div/div/ul/li[1]/a/span")).click();
+        Thread.sleep(3 * 1000);
+        //driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[1]/div/div/div/div/ul/li[2]/a/span")).click();
+        //Thread.sleep(3 * 1000);
+        driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[1]/div/div/div/div/ul/li[3]/a/span")).click();
+        Thread.sleep(3 * 1000);
+        driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[1]/div/div/div/div/ul/li[4]/a/span")).click();
+        Thread.sleep(3 * 1000);
+        driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[1]/div/div/div/div/ul/li[5]/a/span")).click();
+        Thread.sleep(3 * 1000);
+        driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[1]/div/div/div/div/ul/li[6]/a/span")).click();
+        Thread.sleep(3 * 1000);
+        driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[1]/div/div/div/div/ul/li[7]/a/span")).click();
+        Thread.sleep(3 * 1000);
+
+
+        //navega pelo primeiro menu da pagina
+        driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[3]/a")).click();
+        Thread.sleep(3 * 1000);
+        driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[4]/a")).click();
+        Thread.sleep(8 * 1000);
+
+        System.out.println("********************************** LUCRE_MAIS_MENU *********************************************");
+
+        if (driver.getPageSource().contains("Folheto Digital")) {
+            System.out.println("FOLHETO_DIGITAL_OK");
+        } else {
+            System.err.println("FOLHETO_DIGITA_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Meus Clientes")) {
+            System.out.println("MEUS_CLIENTES_OK");
+        } else {
+            System.err.println("MEUS_CLIENTES_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Materiais de Apoio")) {
+            System.out.println("MATERIAIS_DE_APOIO_OK");
+        } else {
+            System.err.println("MATERIAIS_DE_APOIO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("Conecta")) {
+            System.out.println("CONECTA_OK");
+        } else {
+            System.err.println("CONECTA_ERROR");
+        }
+
+        System.out.println("**************************************************************************************************");
+       Thread.sleep(15* 1000);
+       driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[5]")).click();
+       Thread.sleep(10 * 1000);
+       driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[6]/a")).click();
+       Thread.sleep(15* 1000);
+
+        //adiciona produto
+        driver.findElement(By.xpath("//html/body/div[4]/div[1]/div[1]/div[2]/div[2]/div/nav/ul/li[2]/a")).click();
+        Thread.sleep(10 * 1000);
+        driver.findElement(By.id("skuProductInput")).sendKeys("440683");
+        Thread.sleep(2 * 1000);
+        driver.findElement(By.id("contatoSelect_clientAddInput")).sendKeys("joao paulo");
+        driver.findElement(By.id("btnAddProductToCart")).click();
+        Thread.sleep(7 * 1000);
+       //Excluí o produto
+        driver.findElement(By.id("WC_OrderItemDetailsf_links_2_0")).click();
+        Thread.sleep(5 * 1000);
+        //Adiciona um novo produto
+        driver.findElement(By.id("skuProductInput")).sendKeys("523961");
+        Thread.sleep(2 * 1000);
+        driver.findElement(By.id("contatoSelect_clientAddInput")).clear();
+        Thread.sleep(2 * 1000);
+        driver.findElement(By.id("contatoSelect_clientAddInput")).sendKeys("Teste Avon");
+        driver.findElement(By.id("btnAddProductToCart")).click();
+        Thread.sleep(2 * 1000);
+
+       System.out.println("********************************** PASSO_1_DO_PEDIDO *********************************************");
+
+        //Valida o botão continuar passo 1
+        if (driver.getPageSource().contains("avonBar-button-tablet")) {
+            System.out.println("BOTÃO_CONTINUAR_OK");
+        } else {
+            System.err.println("BOTÃO_CONTINUAR_ERROR");
+        }
+        System.out.println("**************************************************************************************************");
+        //retira o menu na hora da evidência
+        {
+            Thread.sleep(15 * 1000);
+
+            String js;
+
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+            js = "return document.getElementById('header').style.visibility = 'hidden'";
+            jse.executeScript(js);
+        }
+        //Tira print da tela com scroll
+        Screenshot PrintPasso1 = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver);
+
+        try {
+
+            ImageIO.write(PrintPasso1.getImage(), "PNG", new File("C://tmp//passo1__" + timestamp() + ".png"));
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        driver.findElement(By.xpath("//html/body/div[3]/div[5]/div/div/div/div/div[3]/div/div/aside/div/div[5]/button")).click();
+        Thread.sleep(5 * 1000);
+
+        System.out.println("********************************** PASSO_2_DO_PEDIDO *********************************************");
+
+        //Valida o botão continuar passo 2
+        if (driver.getPageSource().contains("avonBar-button-tablet ")) {
+            System.out.println("BOTÃO_CONTINUAR_OK");
+        } else {
+            System.err.println("BOTÃO_CONTINUAR_ERROR");
+        }
+        System.out.println("**************************************************************************************************");
+       ///retira o menu na hora da evidência
+        {
+            Thread.sleep(15 * 1000);
+
+            String js;
+
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+            js = "return document.getElementById('header').style.visibility = 'hidden'";
+            jse.executeScript(js);
+        }
+        //Tira print da tela com scroll
+        Screenshot PrintPasso2 = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver);
+
+        try {
+
+            ImageIO.write(PrintPasso2.getImage(), "PNG", new File("C://tmp//Passo2__" + timestamp() + ".png"));
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        //continua o fechamento da compra
+        driver.findElement(By.xpath("//html/body/div[3]/div[5]/div/div/aside/div/div[5]/button")).click();
+        Thread.sleep(5 * 1000);
+
+        //driver.findElement(By.xpath("//html/body/div[18]/div/div/a")).click();
+        // Thread.sleep(3 * 1000);
+
+        System.out.println("********************************** PASSO_3_DO_PEDIDO *********************************************");
+
+        //Valida o passo 3
+        if (driver.getPageSource().contains("shippingAddressDisplayArea")) {
+            System.out.println("ENDEREÇO_ENTREGA_OK");
+        } else {
+            System.err.println("ENDEREÇO_ENTREGA_ERROR");
+        }
+
+        if (driver.getPageSource().contains("options boxOptions01")) {
+            System.out.println("ENTREGA_NORMAL_OK");
+        } else {
+            System.err.println("ENTREGA_NORMAL_ERROR");
+        }
+
+        if (driver.getPageSource().contains("shippingAddressDisplayArea")) {
+            System.out.println("ENTREGA_ESPECIAL_OK");
+        } else {
+            System.err.println("ENTREGA_ESPECIAL_ERROR");
+        }
+
+        if (driver.getPageSource().contains("checkoutOrderResume")) {
+            System.out.println("RESUMO_DO_PEDIDO_OK");
+        } else {
+            System.err.println("RESUMO_DO_PEDIDO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("continue-to-payment")) {
+            System.out.println("CONTINUAR_OK");
+        } else {
+            System.err.println("CONTINUAR_ERROR");
+        }
+         System.out.println("**************************************************************************************************");
+       //retira o menu na hora da evidência
+        {
+            Thread.sleep(15 * 1000);
+
+            String js;
+
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+            js = "return document.getElementById('header').style.visibility = 'hidden'";
+            jse.executeScript(js);
+        }
+        //Tira print da tela com scroll
+        Screenshot PrintPasso3 = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver);
+
+        try {
+
+            ImageIO.write(PrintPasso3.getImage(), "PNG", new File("C://tmp//Passo3.1__" + timestamp() + ".png"));
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+
+        Thread.sleep(8 * 1000);
+        driver.findElement(By.id("continue-to-payment")).click();
+        Thread.sleep(3 * 1000);
+        if (driver.getPageSource().contains("continue changeShipment")) {
+            System.out.println("ALTERAR_ENTREGA_OK");
+        } else {
+            System.err.println("ALTERAR_ENTREGA_ERROR");
+        }
+
+        if (driver.getPageSource().contains("tabPag_BANKSLIP")) {
+            System.out.println("PAGAMENTO_BOLETO_CAIXA_OK");
+        } else {
+            System.err.println("PAGAMENTO_BOLETO_CAIXA_ERROR");
+        }
+
+        if (driver.getPageSource().contains("tabPag_CREDIT_CARD")) {
+            System.out.println("PAGAMENTO_CARTÃO_CRÉDITO_OK");
+        } else {
+            System.err.println("PAGAMENTO_CARTÃO_CRÉDITO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("tabPag_PP_BANKSLIP")) {
+            System.out.println("BOLETO_PAGUE_NA_HORA_OK");
+        } else {
+            System.err.println("BOLETO_PAGUE_NA_HORA_ERROR");
+        }
+
+        if (driver.getPageSource().contains("finish")) {
+            System.out.println("FINALIZAR_PEDIDO_OK");
+        } else {
+            System.err.println("FINALIZAR_PEDIDO_ERROR");
+        }
+        //escolhe as formas de pagamentos
+        driver.findElement(By.id("avonPaymentWidget")).click();
+        Thread.sleep(4 * 1000);
+        driver.findElement(By.id("tabPag_PP_BANKSLIP")).click();
+        Thread.sleep(4 * 1000);
+        driver.findElement(By.id("tabPag_BANKSLIP")).click();
+        Thread.sleep(4 * 1000);
+      //retira o menu na hora da evidência
+        {
+            Thread.sleep(15 * 1000);
+
+            String js;
+
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+            js = "return document.getElementById('header').style.visibility = 'hidden'";
+            jse.executeScript(js);
+        }
+       //Tira print da tela com scroll
+        Screenshot Passo3 = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver);
+
+        try {
+
+            ImageIO.write(Passo3.getImage(), "PNG", new File("C://tmp//Passo3__" + timestamp() + ".png"));
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        //clica e finalizar pedido
+        driver.findElement(By.xpath("//html/body/div[3]/div[5]/div[1]/div/div/div/div/div/div/div[1]/div[4]/div[2]/div/div[2]/div/button")).click();
+        Thread.sleep(5 * 1000);
+
+
+        System.out.println("********************************** PASSO_4_DO_PEDIDO *********************************************");
+
+        //Valida o botão continuar passo 1
+        if (driver.getPageSource().contains("msgConfitmation")) {
+            System.out.println("MENSAGEM_DE_CONFIRMAÇÃO_OK");
+        } else {
+            System.err.println("MENSAGEM_DE_CONFIRMAÇÃO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("orderSummary confirm clearfix")) {
+            System.out.println("RESUMO_DO_PEDIDO_OK");
+        } else {
+            System.err.println("RESUMO_DO_PEDIDO_ERROR");
+        }
+
+        if (driver.getPageSource().contains("productPageAdd2Cart")) {
+            System.out.println("VEJA_ITENS_DO_PEDIDO_OK");
+        } else {
+            System.err.println("VEJA_ITENS_DO_PEDIDO_OK");
+        }
+        System.out.println("**************************************************************************************************");
+        //retira o menu na hora da evidência
+        {
+            Thread.sleep(15 * 1000);
+
+            String js;
+
+            JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+            js = "return document.getElementById('header').style.visibility = 'hidden'";
+            jse.executeScript(js);
+        }
+        //Tira print da tela com scroll
+        Screenshot PrintPasso4 = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(700)).takeScreenshot(driver);
+
+        try {
+
+            ImageIO.write(PrintPasso4.getImage(), "PNG", new File("C://tmp//Passo4__" + timestamp() + ".png"));
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        driver.findElement(By.xpath("//html/body/div[3]/div[1]/div[1]/div/div[1]/div/div/div/a/svg")).click();
+
+        driver.close();
+
+    }
+    // realiza o logout da sessão
+       // Thread.sleep(15 * 1000);
+       //driver.findElement(By.xpath("//*[@id=\"headerRow1\"]/div/div[3]/span[4]/a")).click();
+        public static String timestamp () {
+            return new SimpleDateFormat("dd-MM-yyyy HH-mm-ss").format(new Date());
+        }
+
+    }
